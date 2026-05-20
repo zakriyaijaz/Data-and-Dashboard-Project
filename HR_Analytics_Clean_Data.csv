@@ -1,0 +1,26 @@
+Employee_ID,Age,Gender,Department,Job_Role,Distance_From_Home_KM,Monthly_Income,Years_At_Company,Training_Hours,Performance_Rating,Job_Satisfaction,Promoted_Recently,Attrition
+EMP001,34,Male,Sales,Sales Executive,5,6500,6,12,3,4,No,No
+EMP002,28,Female,R&D,Data Scientist,12,7200,3,40,4,3,Yes,No
+EMP003,45,Male,HR,HR Manager,2,9800,10,15,3,4,No,No
+EMP004,23,Female,Sales,Sales Rep,20,3200,1,8,2,2,No,Yes
+EMP005,38,Male,IT,Software Engineer,8,8100,7,24,4,4,Yes,No
+EMP006,50,Female,Finance,Finance Director,15,12500,15,10,3,3,No,No
+EMP007,29,Male,R&D,Lab Technician,3,4100,4,18,3,2,No,Yes
+EMP008,31,Female,IT,System Admin,10,5500,5,30,4,4,Yes,No
+EMP009,41,Male,Sales,Sales Executive,25,6800,8,12,2,1,No,Yes
+EMP010,26,Female,HR,Recruiter,6,4500,2,20,3,3,No,No
+EMP011,35,Male,Finance,Financial Analyst,14,6200,6,16,3,4,No,No
+EMP012,27,Male,IT,Software Engineer,7,7800,3,25,4,3,Yes,No
+EMP013,48,Female,R&D,Research Director,4,11200,12,8,3,4,No,No
+EMP014,30,Male,Sales,Sales Rep,30,3400,2,10,2,1,No,Yes
+EMP015,33,Female,IT,Database Admin,18,6900,5,22,3,3,Yes,No
+EMP016,42,Male,HR,HR Business Partner,9,8500,9,14,4,4,No,No
+EMP017,25,Female,Finance,Accountant,11,4800,1,12,3,2,No,Yes
+EMP018,37,Male,R&D,Data Scientist,22,7400,6,35,4,4,Yes,No
+EMP019,29,Female,Sales,Sales Executive,2,6300,4,15,3,3,No,No
+EMP020,44,Male,IT,IT Manager,16,10500,11,10,3,4,No,No
+EMP021,32,Female,R&D,Lab Technician,5,4300,3,16,2,2,No,Yes
+EMP022,28,Male,Finance,Financial Analyst,13,6100,4,18,4,3,Yes,No
+EMP023,39,Female,HR,HR Manager,7,9600,8,12,3,4,No,No
+EMP024,24,Male,IT,Software Engineer,21,7500,2,28,4,4,No,No
+EMP025,46,Female,Sales,Sales Director,3,13000,14,8,3,3,No,No
