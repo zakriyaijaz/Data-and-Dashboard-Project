@@ -1,0 +1,365 @@
+
+<h2 class="sr-only">Made By Zakriya Ijaz.</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif}
+.wrap{display:flex;min-height:620px;background:#f0f2f5;border-radius:12px;overflow:hidden;border:1px solid #dde1e7}
+.sidebar{width:170px;background:#1a2340;display:flex;flex-direction:column;flex-shrink:0;padding:0}
+.sb-logo{padding:18px 16px 12px;border-bottom:1px solid #ffffff18}
+.sb-logo-icon{width:36px;height:36px;background:#3a7bd5;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.sb-logo-icon svg{width:20px;height:20px;fill:white}
+.sb-logo-text{font-size:12px;font-weight:700;color:#fff;letter-spacing:.5px;text-transform:uppercase}
+.sb-nav{padding:12px 8px;flex:1}
+.sb-nav-item{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;cursor:pointer;margin-bottom:2px;color:#8fa3c8;font-size:12px;font-weight:500;transition:all .15s}
+.sb-nav-item:hover{background:#ffffff12;color:#fff}
+.sb-nav-item.active{background:#3a7bd5;color:#fff}
+.sb-nav-item svg{width:16px;height:16px;flex-shrink:0}
+.sb-footer{padding:12px 16px;border-top:1px solid #ffffff18;font-size:10px;color:#6080a8;line-height:1.6}
+.sb-footer strong{color:#8fa3c8;display:block;font-size:10px;margin-bottom:2px}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{background:#fff;padding:14px 20px;border-bottom:1px solid #e2e6ed;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.topbar-title{font-size:16px;font-weight:700;color:#1a2340;letter-spacing:.2px}
+.topbar-sub{font-size:11px;color:#8090a8;margin-top:1px}
+.filters{display:flex;gap:8px;align-items:center}
+.filter-group{display:flex;flex-direction:column}
+.filter-label{font-size:9px;color:#8090a8;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+.filter-select{font-size:11px;border:1px solid #dde1e7;border-radius:6px;padding:4px 22px 4px 8px;background:#f8f9fb;color:#1a2340;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238090a8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;outline:none}
+.content{padding:14px;flex:1;overflow-y:auto}
+.page{display:none}.page.active{display:block}
+.kpi-row{display:flex;gap:10px;margin-bottom:12px}
+.kpi-card{flex:1;background:#fff;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid #e8ecf2}
+.kpi-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.kpi-icon svg{width:20px;height:20px}
+.kpi-text{}
+.kpi-label{font-size:10px;color:#8090a8;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+.kpi-val{font-size:18px;font-weight:700;color:#1a2340;line-height:1}
+.kpi-badge{display:inline-flex;align-items:center;gap:3px;font-size:10px;margin-top:3px;padding:1px 5px;border-radius:4px}
+.kpi-badge.up{background:#e8f5e9;color:#2e7d32}
+.kpi-badge.down{background:#ffebee;color:#c62828}
+.charts-grid{display:grid;gap:10px}
+.charts-r1{grid-template-columns:1fr 1fr}
+.charts-r2{grid-template-columns:1fr 1.2fr 1fr}
+.charts-r3{grid-template-columns:1.2fr 1fr}
+.chart-card{background:#fff;border-radius:10px;padding:12px 14px;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid #e8ecf2}
+.chart-card-title{font-size:11px;font-weight:600;color:#4a5568;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:10px;color:#667}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl th{background:#f5f7fa;color:#8090a8;font-weight:600;text-align:left;padding:6px 8px;font-size:10px;text-transform:uppercase;letter-spacing:.3px}
+.tbl td{padding:6px 8px;border-bottom:1px solid #f0f2f5;color:#1a2340}
+.tbl tr:last-child td{border-bottom:none;font-weight:700;background:#f9fafb}
+.badge-r{display:inline-block;padding:1px 6px;border-radius:10px;font-size:10px;font-weight:600}
+</style>
+
+<div class="wrap">
+  <div class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+      </div>
+      <div class="sb-logo-text">HR Dashboard</div>
+    </div>
+    <div class="sb-nav">
+      <div class="sb-nav-item active" onclick="showPage('overview',this)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Overview
+      </div>
+      <div class="sb-nav-item" onclick="showPage('attrition',this)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>Attrition
+      </div>
+      <div class="sb-nav-item" onclick="showPage('performance',this)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Performance
+      </div>
+      <div class="sb-nav-item" onclick="showPage('compensation',this)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>Compensation
+      </div>
+      <div class="sb-nav-item" onclick="showPage('satisfaction',this)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>Satisfaction
+      </div>
+    </div>
+    <div class="sb-footer">
+      <strong>Data as of</strong>May 2026<br><br>
+      <strong>Currency</strong>USD ($)
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <div class="topbar-title" id="page-title">HR PERFORMANCE OVERVIEW</div>
+        <div class="topbar-sub">Workforce Analytics — COMSATS HR Dataset, 25 Employees</div>
+      </div>
+      <div class="filters">
+        <div class="filter-group">
+          <div class="filter-label">Department</div>
+          <select class="filter-select" id="dept-filter" onchange="applyFilters()">
+            <option value="All">All</option>
+            <option>Sales</option><option>R&D</option><option>HR</option><option>IT</option><option>Finance</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Gender</div>
+          <select class="filter-select" id="gender-filter" onchange="applyFilters()">
+            <option value="All">All</option>
+            <option>Male</option><option>Female</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Attrition</div>
+          <select class="filter-select" id="attr-filter" onchange="applyFilters()">
+            <option value="All">All</option>
+            <option>Yes</option><option>No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- OVERVIEW -->
+      <div id="page-overview" class="page active">
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:#e3f2fd"><svg viewBox="0 0 24 24" fill="#1565c0"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+            <div class="kpi-text"><div class="kpi-label">Total Employees</div><div class="kpi-val" id="kpi-total">25</div><div class="kpi-badge up">▲ Active workforce</div></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:#fce4ec"><svg viewBox="0 0 24 24" fill="#c62828"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg></div>
+            <div class="kpi-text"><div class="kpi-label">Attrition Rate</div><div class="kpi-val" id="kpi-attr">28%</div><div class="kpi-badge down">▼ 7 employees left</div></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:#e8f5e9"><svg viewBox="0 0 24 24" fill="#2e7d32"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
+            <div class="kpi-text"><div class="kpi-label">Avg Monthly Income</div><div class="kpi-val" id="kpi-income">$7,008</div><div class="kpi-badge up">▲ Per employee</div></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:#fff8e1"><svg viewBox="0 0 24 24" fill="#e65100"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div>
+            <div class="kpi-text"><div class="kpi-label">Avg Performance</div><div class="kpi-val" id="kpi-perf">3.2 / 4</div><div class="kpi-badge up">▲ 10 high performers</div></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon" style="background:#f3e5f5"><svg viewBox="0 0 24 24" fill="#6a1b9a"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+            <div class="kpi-text"><div class="kpi-label">Avg Tenure</div><div class="kpi-val" id="kpi-tenure">5.9 yrs</div><div class="kpi-badge up">▲ Years at company</div></div>
+          </div>
+        </div>
+        <div class="charts-grid charts-r1" style="margin-bottom:10px">
+          <div class="chart-card">
+            <div class="chart-card-title">Employees by Department</div>
+            <div style="position:relative;height:180px"><canvas id="ov_dept" role="img" aria-label="Bar chart of employees by department"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">Income by Department</div>
+            <div style="position:relative;height:180px"><canvas id="ov_inc" role="img" aria-label="Bar chart of average income by department"></canvas></div>
+          </div>
+        </div>
+        <div class="charts-grid charts-r2">
+          <div class="chart-card">
+            <div class="chart-card-title">Gender Split</div>
+            <div style="position:relative;height:150px"><canvas id="ov_gender" role="img" aria-label="Doughnut chart gender"></canvas></div>
+            <div class="legend" id="leg_ov_gender"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">Age Distribution</div>
+            <div style="position:relative;height:150px"><canvas id="ov_age" role="img" aria-label="Bar chart age distribution"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">Promotions</div>
+            <div style="position:relative;height:150px"><canvas id="ov_promo" role="img" aria-label="Doughnut chart promotions"></canvas></div>
+            <div class="legend" id="leg_ov_promo"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATTRITION -->
+      <div id="page-attrition" class="page">
+        <div class="kpi-row">
+          <div class="kpi-card"><div class="kpi-icon" style="background:#ffebee"><svg viewBox="0 0 24 24" fill="#c62828"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div><div class="kpi-text"><div class="kpi-label">Total Left</div><div class="kpi-val">7</div><div class="kpi-badge down">▼ 28% rate</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#e8f5e9"><svg viewBox="0 0 24 24" fill="#2e7d32"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div class="kpi-text"><div class="kpi-label">Retained</div><div class="kpi-val">18</div><div class="kpi-badge up">▲ 72% stay rate</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#fff8e1"><svg viewBox="0 0 24 24" fill="#e65100"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div class="kpi-text"><div class="kpi-label">Avg Income (Left)</div><div class="kpi-val">$4,414</div><div class="kpi-badge down">▼ Lower earners</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#e3f2fd"><svg viewBox="0 0 24 24" fill="#1565c0"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div><div class="kpi-text"><div class="kpi-label">Avg Tenure (Left)</div><div class="kpi-val">2.7 yrs</div><div class="kpi-badge down">▼ Early leavers</div></div></div>
+        </div>
+        <div class="charts-grid charts-r1" style="margin-bottom:10px">
+          <div class="chart-card">
+            <div class="chart-card-title">Attrition by Department</div>
+            <div style="position:relative;height:190px"><canvas id="at_dept" role="img" aria-label="Horizontal bar attrition by department"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">Attrition vs Retention</div>
+            <div style="position:relative;height:190px"><canvas id="at_pie" role="img" aria-label="Doughnut attrition vs retention"></canvas></div>
+            <div class="legend" id="leg_at_pie"></div>
+          </div>
+        </div>
+        <div class="charts-grid charts-r1">
+          <div class="chart-card">
+            <div class="chart-card-title">Attrition by Gender</div>
+            <div style="position:relative;height:160px"><canvas id="at_gender" role="img" aria-label="Bar attrition by gender"></canvas></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-card-title">Income: Left vs Retained</div>
+            <div style="position:relative;height:160px"><canvas id="at_income" role="img" aria-label="Bar income comparison"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERFORMANCE -->
+      <div id="page-performance" class="page">
+        <div class="kpi-row">
+          <div class="kpi-card"><div class="kpi-icon" style="background:#e8f5e9"><svg viewBox="0 0 24 24" fill="#2e7d32"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div class="kpi-text"><div class="kpi-label">High Performers (4)</div><div class="kpi-val">10</div><div class="kpi-badge up">▲ 40% workforce</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#ffebee"><svg viewBox="0 0 24 24" fill="#c62828"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div><div class="kpi-text"><div class="kpi-label">Low Performers (2)</div><div class="kpi-val">5</div><div class="kpi-badge down">▼ Need support</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#e3f2fd"><svg viewBox="0 0 24 24" fill="#1565c0"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></div><div class="kpi-text"><div class="kpi-label">Avg Training Hrs</div><div class="kpi-val">17.2</div><div class="kpi-badge up">▲ Per employee</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#f3e5f5"><svg viewBox="0 0 24 24" fill="#6a1b9a"><path d="M9 11.75c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm6 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"/></svg></div><div class="kpi-text"><div class="kpi-label">Avg Rating</div><div class="kpi-val">3.2 / 4</div><div class="kpi-badge up">▲ Good overall</div></div></div>
+        </div>
+        <div class="charts-grid charts-r1" style="margin-bottom:10px">
+          <div class="chart-card"><div class="chart-card-title">Performance Rating Distribution</div><div style="position:relative;height:190px"><canvas id="pf_dist" role="img" aria-label="Bar chart performance ratings"></canvas></div></div>
+          <div class="chart-card"><div class="chart-card-title">Avg Performance by Department</div><div style="position:relative;height:190px"><canvas id="pf_dept" role="img" aria-label="Bar performance by department"></canvas></div></div>
+        </div>
+        <div class="charts-grid charts-r1">
+          <div class="chart-card"><div class="chart-card-title">Training Hours by Performance</div><div style="position:relative;height:160px"><canvas id="pf_train" role="img" aria-label="Bar training hours by performance"></canvas></div></div>
+          <div class="chart-card"><div class="chart-card-title">Performance vs Promotion Rate</div><div style="position:relative;height:160px"><canvas id="pf_promo" role="img" aria-label="Bar performance vs promotion"></canvas></div></div>
+        </div>
+      </div>
+
+      <!-- COMPENSATION -->
+      <div id="page-compensation" class="page">
+        <div class="kpi-row">
+          <div class="kpi-card"><div class="kpi-icon" style="background:#e8f5e9"><svg viewBox="0 0 24 24" fill="#2e7d32"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div class="kpi-text"><div class="kpi-label">Avg Income</div><div class="kpi-val">$7,008</div><div class="kpi-badge up">▲ Monthly</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#e3f2fd"><svg viewBox="0 0 24 24" fill="#1565c0"><path d="M4 10h3v7H4zm6.5-6h3v13h-3zm6.5 3h3v10h-3z"/></svg></div><div class="kpi-text"><div class="kpi-label">Highest Paid</div><div class="kpi-val">$13,000</div><div class="kpi-badge up">▲ Sales Director</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#ffebee"><svg viewBox="0 0 24 24" fill="#c62828"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div><div class="kpi-text"><div class="kpi-label">Lowest Paid</div><div class="kpi-val">$3,200</div><div class="kpi-badge down">▼ Sales Rep</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#fff8e1"><svg viewBox="0 0 24 24" fill="#e65100"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.58-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg></div><div class="kpi-text"><div class="kpi-label">Gender Pay Gap</div><div class="kpi-val">+$1,110</div><div class="kpi-badge down">▼ Male higher</div></div></div>
+        </div>
+        <div class="charts-grid charts-r1" style="margin-bottom:10px">
+          <div class="chart-card"><div class="chart-card-title">Avg Income by Department</div><div style="position:relative;height:190px"><canvas id="cp_dept" role="img" aria-label="Horizontal bar income by department"></canvas></div></div>
+          <div class="chart-card"><div class="chart-card-title">Income by Gender</div><div style="position:relative;height:190px"><canvas id="cp_gender" role="img" aria-label="Bar income by gender"></canvas></div></div>
+        </div>
+        <div class="charts-grid charts-r1">
+          <div class="chart-card"><div class="chart-card-title">Income vs Tenure (Scatter)</div><div style="position:relative;height:160px"><canvas id="cp_scatter" role="img" aria-label="Scatter income vs tenure"></canvas></div></div>
+          <div class="chart-card"><div class="chart-card-title">Income by Performance Rating</div><div style="position:relative;height:160px"><canvas id="cp_perf" role="img" aria-label="Bar income by performance"></canvas></div></div>
+        </div>
+      </div>
+
+      <!-- SATISFACTION -->
+      <div id="page-satisfaction" class="page">
+        <div class="kpi-row">
+          <div class="kpi-card"><div class="kpi-icon" style="background:#e8f5e9"><svg viewBox="0 0 24 24" fill="#2e7d32"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg></div><div class="kpi-text"><div class="kpi-label">Avg Satisfaction</div><div class="kpi-val">3.0 / 4</div><div class="kpi-badge up">▲ Overall score</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#e3f2fd"><svg viewBox="0 0 24 24" fill="#1565c0"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div><div class="kpi-text"><div class="kpi-label">Highly Satisfied (4)</div><div class="kpi-val">11</div><div class="kpi-badge up">▲ 44% workforce</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#ffebee"><svg viewBox="0 0 24 24" fill="#c62828"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm4-8c0 2.21-1.79 4-4 4s-4-1.79-4-4h8z"/></svg></div><div class="kpi-text"><div class="kpi-label">Unsatisfied (1)</div><div class="kpi-val">2</div><div class="kpi-badge down">▼ 100% attrition</div></div></div>
+          <div class="kpi-card"><div class="kpi-icon" style="background:#f3e5f5"><svg viewBox="0 0 24 24" fill="#6a1b9a"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><div class="kpi-text"><div class="kpi-label">Avg Distance</div><div class="kpi-val">11.6 km</div><div class="kpi-badge up">▲ From home</div></div></div>
+        </div>
+        <div class="charts-grid charts-r1" style="margin-bottom:10px">
+          <div class="chart-card"><div class="chart-card-title">Satisfaction Score Distribution</div><div style="position:relative;height:190px"><canvas id="st_dist" role="img" aria-label="Bar satisfaction distribution"></canvas></div></div>
+          <div class="chart-card"><div class="chart-card-title">Satisfaction by Department</div><div style="position:relative;height:190px"><canvas id="st_dept" role="img" aria-label="Bar satisfaction by department"></canvas></div></div>
+        </div>
+        <div class="charts-grid charts-r1">
+          <div class="chart-card"><div class="chart-card-title">Satisfaction vs Attrition</div><div style="position:relative;height:160px"><canvas id="st_attr" role="img" aria-label="Bar satisfaction vs attrition"></canvas></div></div>
+          <div class="chart-card"><div class="chart-card-title">Distance from Home by Satisfaction</div><div style="position:relative;height:160px"><canvas id="st_dist2" role="img" aria-label="Bar distance by satisfaction"></canvas></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const RAW=[{Age:34,Gender:"Male",Department:"Sales",Distance_From_Home_KM:5,Monthly_Income:6500,Years_At_Company:6,Training_Hours:12,Performance_Rating:3,Job_Satisfaction:4,Promoted_Recently:"No",Attrition:"No"},{Age:28,Gender:"Female",Department:"R&D",Distance_From_Home_KM:12,Monthly_Income:7200,Years_At_Company:3,Training_Hours:40,Performance_Rating:4,Job_Satisfaction:3,Promoted_Recently:"Yes",Attrition:"No"},{Age:45,Gender:"Male",Department:"HR",Distance_From_Home_KM:2,Monthly_Income:9800,Years_At_Company:10,Training_Hours:15,Performance_Rating:3,Job_Satisfaction:4,Promoted_Recently:"No",Attrition:"No"},{Age:23,Gender:"Female",Department:"Sales",Distance_From_Home_KM:20,Monthly_Income:3200,Years_At_Company:1,Training_Hours:8,Performance_Rating:2,Job_Satisfaction:2,Promoted_Recently:"No",Attrition:"Yes"},{Age:38,Gender:"Male",Department:"IT",Distance_From_Home_KM:8,Monthly_Income:8100,Years_At_Company:7,Training_Hours:24,Performance_Rating:4,Job_Satisfaction:4,Promoted_Recently:"Yes",Attrition:"No"},{Age:50,Gender:"Female",Department:"Finance",Distance_From_Home_KM:15,Monthly_Income:12500,Years_At_Company:15,Training_Hours:10,Performance_Rating:3,Job_Satisfaction:3,Promoted_Recently:"No",Attrition:"No"},{Age:29,Gender:"Male",Department:"R&D",Distance_From_Home_KM:3,Monthly_Income:4100,Years_At_Company:4,Training_Hours:18,Performance_Rating:3,Job_Satisfaction:2,Promoted_Recently:"No",Attrition:"Yes"},{Age:31,Gender:"Female",Department:"IT",Distance_From_Home_KM:10,Monthly_Income:5500,Years_At_Company:5,Training_Hours:30,Performance_Rating:4,Job_Satisfaction:4,Promoted_Recently:"Yes",Attrition:"No"},{Age:41,Gender:"Male",Department:"Sales",Distance_From_Home_KM:25,Monthly_Income:6800,Years_At_Company:8,Training_Hours:12,Performance_Rating:2,Job_Satisfaction:1,Promoted_Recently:"No",Attrition:"Yes"},{Age:26,Gender:"Female",Department:"HR",Distance_From_Home_KM:6,Monthly_Income:4500,Years_At_Company:2,Training_Hours:20,Performance_Rating:3,Job_Satisfaction:3,Promoted_Recently:"No",Attrition:"No"},{Age:35,Gender:"Male",Department:"Finance",Distance_From_Home_KM:14,Monthly_Income:6200,Years_At_Company:6,Training_Hours:16,Performance_Rating:3,Job_Satisfaction:4,Promoted_Recently:"No",Attrition:"No"},{Age:27,Gender:"Male",Department:"IT",Distance_From_Home_KM:7,Monthly_Income:7800,Years_At_Company:3,Training_Hours:25,Performance_Rating:4,Job_Satisfaction:3,Promoted_Recently:"Yes",Attrition:"No"},{Age:48,Gender:"Female",Department:"R&D",Distance_From_Home_KM:4,Monthly_Income:11200,Years_At_Company:12,Training_Hours:8,Performance_Rating:3,Job_Satisfaction:4,Promoted_Recently:"No",Attrition:"No"},{Age:30,Gender:"Male",Department:"Sales",Distance_From_Home_KM:30,Monthly_Income:3400,Years_At_Company:2,Training_Hours:10,Performance_Rating:2,Job_Satisfaction:1,Promoted_Recently:"No",Attrition:"Yes"},{Age:33,Gender:"Female",Department:"IT",Distance_From_Home_KM:18,Monthly_Income:6900,Years_At_Company:5,Training_Hours:22,Performance_Rating:3,Job_Satisfaction:3,Promoted_Recently:"Yes",Attrition:"No"},{Age:42,Gender:"Male",Department:"HR",Distance_From_Home_KM:9,Monthly_Income:8500,Years_At_Company:9,Training_Hours:14,Performance_Rating:4,Job_Satisfaction:4,Promoted_Recently:"No",Attrition:"No"},{Age:25,Gender:"Female",Department:"Finance",Distance_From_Home_KM:11,Monthly_Income:4800,Years_At_Company:1,Training_Hours:12,Performance_Rating:3,Job_Satisfaction:2,Promoted_Recently:"No",Attrition:"Yes"},{Age:37,Gender:"Male",Department:"R&D",Distance_From_Home_KM:22,Monthly_Income:7400,Years_At_Company:6,Training_Hours:35,Performance_Rating:4,Job_Satisfaction:4,Promoted_Recently:"Yes",Attrition:"No"},{Age:29,Gender:"Female",Department:"Sales",Distance_From_Home_KM:2,Monthly_Income:6300,Years_At_Company:4,Training_Hours:15,Performance_Rating:3,Job_Satisfaction:3,Promoted_Recently:"No",Attrition:"No"},{Age:44,Gender:"Male",Department:"IT",Distance_From_Home_KM:16,Monthly_Income:10500,Years_At_Company:11,Training_Hours:10,Performance_Rating:3,Job_Satisfaction:4,Promoted_Recently:"No",Attrition:"No"},{Age:32,Gender:"Female",Department:"R&D",Distance_From_Home_KM:5,Monthly_Income:4300,Years_At_Company:3,Training_Hours:16,Performance_Rating:2,Job_Satisfaction:2,Promoted_Recently:"No",Attrition:"Yes"},{Age:28,Gender:"Male",Department:"Finance",Distance_From_Home_KM:13,Monthly_Income:6100,Years_At_Company:4,Training_Hours:18,Performance_Rating:4,Job_Satisfaction:3,Promoted_Recently:"Yes",Attrition:"No"},{Age:39,Gender:"Female",Department:"HR",Distance_From_Home_KM:7,Monthly_Income:9600,Years_At_Company:8,Training_Hours:12,Performance_Rating:3,Job_Satisfaction:4,Promoted_Recently:"No",Attrition:"No"},{Age:24,Gender:"Male",Department:"IT",Distance_From_Home_KM:21,Monthly_Income:7500,Years_At_Company:2,Training_Hours:28,Performance_Rating:4,Job_Satisfaction:4,Promoted_Recently:"No",Attrition:"No"},{Age:46,Gender:"Female",Department:"Sales",Distance_From_Home_KM:3,Monthly_Income:13000,Years_At_Company:14,Training_Hours:8,Performance_Rating:3,Job_Satisfaction:3,Promoted_Recently:"No",Attrition:"No"}];
+
+const DEPTS=['Sales','R&D','HR','IT','Finance'];
+const DC=['#D85A30','#7F77DD','#1D9E75','#378ADD','#BA7517'];
+const charts={};
+
+function avg(a){return a.length?a.reduce((s,v)=>s+v,0)/a.length:0}
+function grp(data,key){return data.reduce((a,e)=>{(a[e[key]]=a[e[key]]||[]).push(e);return a},{})}
+
+function getFiltered(){
+  const d=document.getElementById('dept-filter').value;
+  const g=document.getElementById('gender-filter').value;
+  const a=document.getElementById('attr-filter').value;
+  return RAW.filter(e=>(d==='All'||e.Department===d)&&(g==='All'||e.Gender===g)&&(a==='All'||e.Attrition===a));
+}
+
+function mk(id,type,labels,datasets,extra={}){
+  if(charts[id]){charts[id].destroy()}
+  const el=document.getElementById(id);
+  if(!el)return;
+  charts[id]=new Chart(el,{type,data:{labels,datasets},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},...extra}});
+}
+
+function leg(id,items){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.innerHTML=items.map(i=>`<span><span class="legend-dot" style="background:${i.c}"></span>${i.l}</span>`).join('');
+}
+
+function buildAll(){
+  const D=getFiltered();
+  const byD=grp(D,'Department');
+
+  // Overview
+  const tot=D.length;
+  document.getElementById('kpi-total').textContent=tot;
+  document.getElementById('kpi-attr').textContent=tot?Math.round(D.filter(e=>e.Attrition==='Yes').length/tot*100)+'%':'—';
+  document.getElementById('kpi-income').textContent='$'+Math.round(avg(D.map(e=>e.Monthly_Income))).toLocaleString();
+  document.getElementById('kpi-perf').textContent=avg(D.map(e=>e.Performance_Rating)).toFixed(1)+' / 4';
+  document.getElementById('kpi-tenure').textContent=avg(D.map(e=>e.Years_At_Company)).toFixed(1)+' yrs';
+
+  mk('ov_dept','bar',DEPTS,[{data:DEPTS.map(d=>(byD[d]||[]).length),backgroundColor:DC,borderRadius:5}],{scales:{y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f2f5'}},x:{grid:{display:false}}}});
+  mk('ov_inc','bar',DEPTS,[{data:DEPTS.map(d=>Math.round(avg((byD[d]||[]).map(e=>e.Monthly_Income)))),backgroundColor:DC,borderRadius:5}],{scales:{y:{beginAtZero:true,grid:{color:'#f0f2f5'},ticks:{callback:v=>'$'+v.toLocaleString()}},x:{grid:{display:false}}}});
+
+  const mC=D.filter(e=>e.Gender==='Male').length,fC=D.length-mC;
+  mk('ov_gender','doughnut',['Male','Female'],[{data:[mC,fC],backgroundColor:['#378ADD','#D4537E'],borderWidth:0}],{cutout:'62%'});
+  leg('leg_ov_gender',[{c:'#378ADD',l:`Male ${mC}`},{c:'#D4537E',l:`Female ${fC}`}]);
+
+  const ab={'20-29':0,'30-39':0,'40-49':0,'50+':0};
+  D.forEach(e=>{if(e.Age<30)ab['20-29']++;else if(e.Age<40)ab['30-39']++;else if(e.Age<50)ab['40-49']++;else ab['50+']++;});
+  mk('ov_age','bar',Object.keys(ab),[{data:Object.values(ab),backgroundColor:'#378ADD',borderRadius:5}],{scales:{y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f2f5'}},x:{grid:{display:false}}}});
+
+  const pY=D.filter(e=>e.Promoted_Recently==='Yes').length;
+  mk('ov_promo','doughnut',['Promoted','Not promoted'],[{data:[pY,D.length-pY],backgroundColor:['#1D9E75','#d0d4dc'],borderWidth:0}],{cutout:'62%'});
+  leg('leg_ov_promo',[{c:'#1D9E75',l:`Promoted ${pY}`},{c:'#d0d4dc',l:`Not ${D.length-pY}`}]);
+
+  // Attrition
+  mk('at_dept','bar',DEPTS,[{data:DEPTS.map(d=>(byD[d]||[]).filter(e=>e.Attrition==='Yes').length),backgroundColor:DC,borderRadius:5}],{indexAxis:'y',scales:{x:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f2f5'}},y:{grid:{display:false}}}});
+  const lN=D.filter(e=>e.Attrition==='Yes').length;
+  mk('at_pie','doughnut',['Left','Retained'],[{data:[lN,D.length-lN],backgroundColor:['#E24B4A','#1D9E75'],borderWidth:0}],{cutout:'62%'});
+  leg('leg_at_pie',[{c:'#E24B4A',l:`Left ${lN}`},{c:'#1D9E75',l:`Retained ${D.length-lN}`}]);
+
+  const mL=D.filter(e=>e.Gender==='Male'&&e.Attrition==='Yes').length;
+  const fL=D.filter(e=>e.Gender==='Female'&&e.Attrition==='Yes').length;
+  mk('at_gender','bar',['Male','Female'],[{data:[mL,fL],backgroundColor:['#378ADD','#D4537E'],borderRadius:5}],{scales:{y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f2f5'}},x:{grid:{display:false}}}});
+
+  const iL=Math.round(avg(D.filter(e=>e.Attrition==='Yes').map(e=>e.Monthly_Income)));
+  const iR=Math.round(avg(D.filter(e=>e.Attrition==='No').map(e=>e.Monthly_Income)));
+  mk('at_income','bar',['Left','Retained'],[{data:[iL||0,iR||0],backgroundColor:['#E24B4A','#1D9E75'],borderRadius:5}],{scales:{y:{beginAtZero:true,grid:{color:'#f0f2f5'},ticks:{callback:v=>'$'+v.toLocaleString()}},x:{grid:{display:false}}}});
+
+  // Performance
+  const pc=[1,2,3,4].map(r=>D.filter(e=>e.Performance_Rating===r).length);
+  mk('pf_dist','bar',['Rating 1','Rating 2','Rating 3','Rating 4'],[{data:pc,backgroundColor:['#E24B4A','#BA7517','#378ADD','#1D9E75'],borderRadius:5}],{scales:{y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f2f5'}},x:{grid:{display:false}}}});
+  mk('pf_dept','bar',DEPTS,[{data:DEPTS.map(d=>+avg((byD[d]||[]).map(e=>e.Performance_Rating)).toFixed(2)),backgroundColor:DC,borderRadius:5}],{scales:{y:{min:1,max:4,grid:{color:'#f0f2f5'}},x:{grid:{display:false}}}});
+  mk('pf_train','bar',['Rating 1','Rating 2','Rating 3','Rating 4'],[{data:[1,2,3,4].map(r=>+avg(D.filter(e=>e.Performance_Rating===r).map(e=>e.Training_Hours)).toFixed(1)),backgroundColor:['#E24B4A','#BA7517','#378ADD','#1D9E75'],borderRadius:5}],{scales:{y:{beginAtZero:true,grid:{color:'#f0f2f5'}},x:{grid:{display:false}}}});
+  mk('pf_promo','bar',['Promoted','Not Promoted'],[{data:[+avg(D.filter(e=>e.Promoted_Recently==='Yes').map(e=>e.Performance_Rating)).toFixed(2),+avg(D.filter(e=>e.Promoted_Recently==='No').map(e=>e.Performance_Rating)).toFixed(2)],backgroundColor:['#1D9E75','#d0d4dc'],borderRadius:5}],{scales:{y:{min:1,max:4,grid:{color:'#f0f2f5'}},x:{grid:{display:false}}}});
+
+  // Compensation
+  mk('cp_dept','bar',DEPTS,[{data:DEPTS.map(d=>Math.round(avg((byD[d]||[]).map(e=>e.Monthly_Income)))),backgroundColor:DC,borderRadius:5}],{indexAxis:'y',scales:{x:{beginAtZero:true,grid:{color:'#f0f2f5'},ticks:{callback:v=>'$'+v.toLocaleString()}},y:{grid:{display:false}}}});
+  const mI=Math.round(avg(D.filter(e=>e.Gender==='Male').map(e=>e.Monthly_Income)));
+  const fI=Math.round(avg(D.filter(e=>e.Gender==='Female').map(e=>e.Monthly_Income)));
+  mk('cp_gender','bar',['Male','Female'],[{data:[mI||0,fI||0],backgroundColor:['#378ADD','#D4537E'],borderRadius:5}],{scales:{y:{beginAtZero:true,grid:{color:'#f0f2f5'},ticks:{callback:v=>'$'+v.toLocaleString()}},x:{grid:{display:false}}}});
+  mk('cp_scatter','scatter',null,[{data:D.map(e=>({x:e.Years_At_Company,y:e.Monthly_Income})),backgroundColor:'#7F77DD99',pointRadius:7,pointHoverRadius:9}],{scales:{x:{title:{display:true,text:'Years at company',font:{size:10}},grid:{color:'#f0f2f5'}},y:{title:{display:true,text:'Monthly income',font:{size:10}},grid:{color:'#f0f2f5'},ticks:{callback:v=>'$'+v.toLocaleString()}}}});
+  mk('cp_perf','bar',['Rating 1','Rating 2','Rating 3','Rating 4'],[{data:[1,2,3,4].map(r=>Math.round(avg(D.filter(e=>e.Performance_Rating===r).map(e=>e.Monthly_Income)))),backgroundColor:['#E24B4A','#BA7517','#378ADD','#1D9E75'],borderRadius:5}],{scales:{y:{beginAtZero:true,grid:{color:'#f0f2f5'},ticks:{callback:v=>'$'+v.toLocaleString()}},x:{grid:{display:false}}}});
+
+  // Satisfaction
+  mk('st_dist','bar',['Score 1','Score 2','Score 3','Score 4'],[{data:[1,2,3,4].map(s=>D.filter(e=>e.Job_Satisfaction===s).length),backgroundColor:['#E24B4A','#BA7517','#378ADD','#1D9E75'],borderRadius:5}],{scales:{y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#f0f2f5'}},x:{grid:{display:false}}}});
+  mk('st_dept','bar',DEPTS,[{data:DEPTS.map(d=>+avg((byD[d]||[]).map(e=>e.Job_Satisfaction)).toFixed(2)),backgroundColor:DC,borderRadius:5}],{scales:{y:{min:0,max:4,grid:{color:'#f0f2f5'}},x:{grid:{display:false}}}});
+  mk('st_attr','bar',['Left','Retained'],[{data:[+avg(D.filter(e=>e.Attrition==='Yes').map(e=>e.Job_Satisfaction)).toFixed(2)||0,+avg(D.filter(e=>e.Attrition==='No').map(e=>e.Job_Satisfaction)).toFixed(2)||0],backgroundColor:['#E24B4A','#1D9E75'],borderRadius:5}],{scales:{y:{min:0,max:4,grid:{color:'#f0f2f5'}},x:{grid:{display:false}}}});
+  mk('st_dist2','bar',['Sat 1','Sat 2','Sat 3','Sat 4'],[{data:[1,2,3,4].map(s=>+avg(D.filter(e=>e.Job_Satisfaction===s).map(e=>e.Distance_From_Home_KM)).toFixed(1)),backgroundColor:['#E24B4A','#BA7517','#378ADD','#1D9E75'],borderRadius:5}],{scales:{y:{beginAtZero:true,grid:{color:'#f0f2f5'}},x:{grid:{display:false}}}});
+}
+
+const titles={overview:'HR PERFORMANCE OVERVIEW',attrition:'ATTRITION ANALYSIS',performance:'PERFORMANCE ANALYSIS',compensation:'COMPENSATION ANALYSIS',satisfaction:'SATISFACTION ANALYSIS'};
+
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sb-nav-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('page-title').textContent=titles[id];
+  setTimeout(buildAll,50);
+}
+
+function applyFilters(){buildAll()}
+
+setTimeout(buildAll,400);
+</script>
